@@ -546,8 +546,12 @@ router.get('/optimizeImagesAll',verifyShop, (req, res) => {
     let Output= async(()=>{
 
                 let products=  await(shopify.product.list({ limit: 40,page:page }));
+                let ProductLoopIndex=0;
                    products.forEach((product)=>{
                     let id= product.id;
+                       ProductLoopIndex++;
+                    console.log(`*** Product Number ${ProductLoopIndex} ***`);
+
                     let productImages= await (shopify.productImage.list(id,[]));
                     // console.log(productImages);
 
@@ -563,7 +567,7 @@ router.get('/optimizeImagesAll',verifyShop, (req, res) => {
 
                               let compressImage= await(resmush(image.src));
 
- 
+
 
 
                                     if(compressImage.percent>=0) {
