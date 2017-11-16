@@ -541,10 +541,10 @@ router.get('/optimizeImages',verifyShop, (req, res) => {
 
 
 router.get('/optimizeImagesAll',verifyShop, (req, res) => {
-    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Origin", "*");   let page = req.query.page ? req.query.page : 1;
     res.send( 'optimizing images ... you can close this tab...page ='+page);
     let Output= async(()=>{
-                let page = req.query.page ? req.query.page : 1;
+
                 let products=  await(shopify.product.list({ limit: 40,page:page }));
                    products.forEach((product)=>{
                     let id= product.id;
