@@ -546,11 +546,11 @@ router.get('/optimizeImagesAll',verifyShop, (req, res) => {
     let Output= async(()=>{
 
                 let products=  await(shopify.product.list({ limit: 250,page:page }));
-                let ProductLoopIndex=0; 
+                let ProductLoopIndex=0;
                    products.forEach((product)=>{
                     let id= product.id;
                        ProductLoopIndex++;
-                    console.log(`*** Product Number ${ProductLoopIndex} ***`);
+                    console.log(`*** Product Number ${ProductLoopIndex} (${id}) ***`);
 
                     let productImages= await (shopify.productImage.list(id,[]));
                     // console.log(productImages);
