@@ -545,8 +545,8 @@ router.get('/optimizeImagesAll',verifyShop, (req, res) => {
     res.send( 'optimizing images ... you can close this tab...page ='+page);
     let Output= async(()=>{
 
-                let products=  await(shopify.product.list({ limit: 40,page:page }));
-                let ProductLoopIndex=0;
+                let products=  await(shopify.product.list({ limit: 250,page:page }));
+                let ProductLoopIndex=0; 
                    products.forEach((product)=>{
                     let id= product.id;
                        ProductLoopIndex++;
