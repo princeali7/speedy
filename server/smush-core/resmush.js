@@ -22,7 +22,7 @@ let resmush=(ImgUrl)=>{
             else{
 
                 let resp= JSON.parse(body);
-                console.log(img+ ' => compressed = '+resp.percent+'%');
+                console.log('compression happened =>'+resp.percent+'%');
                 resolve(resp);
             }
 
