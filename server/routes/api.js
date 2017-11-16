@@ -480,7 +480,7 @@ router.get('/optimizeImages',verifyShop, (req, res) => {
 
         if(req.query.ids)
         {
-            console.log(req.query.ids);
+            console.log(req.query.ids);        res.send( 'optimizing images ... you can close this tab...');
             req.query.ids.forEach((id)=>{
 
                 let productImages= await (shopify.productImage.list(id,[]));
@@ -528,8 +528,8 @@ router.get('/optimizeImages',verifyShop, (req, res) => {
 
 
     Output().then((r)=>{
- 
-        res.send( 'optimizing images ... you can close this tab...');
+
+
 
     });
 
