@@ -561,21 +561,20 @@ router.get('/optimizeImagesAll',verifyShop, (req, res) => {
                                 delete image.id;
 
 
-                                resmush(image.src).then((compressImage)=>{
+                              let compressImage= await(resmush(image.src));
 
-
+ 
 
 
                                     if(compressImage.percent>=0) {
                                         image.src = compressImage.dest;
                                         console.log('delete old Image');
-                                        shopify.productImage.delete(id,originImgId).then(()=>{});
+                                        await(shopify.productImage.delete(id,originImgId));
                                         console.log('Uploading new Image');
-                                        shopify.productImage.create(id,image).then((r)=>{});
+                                        await(shopify.productImage.create(id,image));
 
 
                                     }
-                                });
                             });
 
 
