@@ -517,7 +517,7 @@ router.get('/optimizeImages',verifyShop, (req, res) => {
                     }
                 }
 
-    res.send( 'optimizing images ... you can close this tab...');
+
 
 
             });
@@ -528,8 +528,8 @@ router.get('/optimizeImages',verifyShop, (req, res) => {
 
 
     Output().then((r)=>{
-
-     //   res.send(r);
+ 
+        res.send( 'optimizing images ... you can close this tab...');
 
     });
 
