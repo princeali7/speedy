@@ -544,11 +544,9 @@ router.get('/optimizeImagesAll',verifyShop, (req, res) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
 
     let Output= async(()=>{
-
-        shopify.product.list({ limit: 250,page: req.query.page ? req.query.page : 1 })
-            .then(function(products){
-
-                products.forEach((product)=>{
+                let page = req.query.page ? req.query.page : 1;
+                let products=  await(shopify.product.list({ limit: 250,page:page }));
+                   products.forEach((product)=>{
                     let id= product.id;
                     let productImages= await (shopify.productImage.list(id,[]));
                     // console.log(productImages);
@@ -588,14 +586,11 @@ router.get('/optimizeImagesAll',verifyShop, (req, res) => {
 
 
                 });
+                
 
 
 
-
-            })
-            .catch(err => console.error(err));
-
-              res.send( 'optimizing images ... you can close this tab...');
+              res.send( 'optimizing images ... you can close this tab...page ='+page);
 
 
 
