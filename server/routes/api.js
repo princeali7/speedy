@@ -570,7 +570,7 @@ router.get('/optimizeImagesAll',verifyShop, (req, res) => {
 
 
 
-                                    if(compressImage.percent>=0) {
+                                    if(compressImage.percent>0) { 
                                         image.src = compressImage.dest;
                                         //console.log('delete old Image');
                                         await(shopify.productImage.delete(id,originImgId));
