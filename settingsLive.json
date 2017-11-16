@@ -1,0 +1,17 @@
+{
+	"oauth": {
+		"api_key": "4f7a4e83db530b34b07416cd133dd43c",
+		"client_secret": "74529015f06425b158d0489c908f5e5c",
+		"redirect_uri": "https://6e115e46.ngrok.io/api/access_token",
+		"scope": "read_products,write_products"
+	},
+	"database":{
+		"socketPath" : "consentprotect.com",
+		"user": "cookie",
+		"password": "ZTk.8_,RVJ^}",
+		"database": "Smushify"
+
+	}
+,
+	"app_url": "https://pennymore.herokuapp.com"
+}
