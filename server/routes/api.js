@@ -484,7 +484,7 @@ router.get('/optimizeImages',verifyShop, (req, res) => {
             req.query.ids.forEach((id)=>{
 
                 let productImages= await (shopify.productImage.list(id,[]));
-               // console.log(productImages);
+                // console.log(productImages);
 
                 if(productImages)
                 {
@@ -496,21 +496,21 @@ router.get('/optimizeImages',verifyShop, (req, res) => {
                             delete image.id;
 
 
-                             resmush(image.src).then((compressImage)=>{
+                            resmush(image.src).then((compressImage)=>{
 
 
 
 
-                            if(compressImage.percent>=0) {
-                               image.src = compressImage.dest;
-                               console.log('delete old Image');
-                               shopify.productImage.delete(id,originImgId).then(()=>{});
-                                console.log('Uploading new Image');
-                               shopify.productImage.create(id,image).then((r)=>{});
+                                if(compressImage.percent>=0) {
+                                    image.src = compressImage.dest;
+                                    console.log('delete old Image');
+                                    shopify.productImage.delete(id,originImgId).then(()=>{});
+                                    console.log('Uploading new Image');
+                                    shopify.productImage.create(id,image).then((r)=>{});
 
 
-                            }
-                             });
+                                }
+                            });
                         });
 
 
@@ -538,6 +538,84 @@ router.get('/optimizeImages',verifyShop, (req, res) => {
 
 
 });
+
+
+router.get('/optimizeImagesAll',verifyShop, (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+
+    let Output= async(()=>{
+
+        shopify.product.list({ limit: 250,page: req.query.page ? req.query.page : 1 })
+            .then(function(products){
+
+                products.forEach((product)=>{
+                    let id= product.id;
+                    let productImages= await (shopify.productImage.list(id,[]));
+                    // console.log(productImages);
+
+                    if(productImages)
+                    {
+                        if(productImages.length>0)
+                        {
+                            productImages.forEach((image)=>{
+
+                                let originImgId= image.id;
+                                delete image.id;
+
+
+                                resmush(image.src).then((compressImage)=>{
+
+
+
+
+                                    if(compressImage.percent>=0) {
+                                        image.src = compressImage.dest;
+                                        console.log('delete old Image');
+                                        shopify.productImage.delete(id,originImgId).then(()=>{});
+                                        console.log('Uploading new Image');
+                                        shopify.productImage.create(id,image).then((r)=>{});
+
+
+                                    }
+                                });
+                            });
+
+
+                        }
+                    }
+
+
+
+
+                });
+
+
+
+
+            })
+            .catch(err => console.error(err));
+
+              res.send( 'optimizing images ... you can close this tab...');
+
+
+
+
+    })
+
+
+    Output().then((r)=>{
+
+
+
+    });
+
+
+
+
+
+});
+
+
 
 
 router.post('/uninstalled-app',verifyShopifyHook, (req, res) => {
