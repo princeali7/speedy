@@ -560,6 +560,8 @@ router.get('/optimizeImagesAll',verifyShop, (req, res) => {
                         if(productImages.length>0)
                         {
                             productImages.forEach((image)=>{
+                                    if(image.position==1)
+                                    {
 
                                 let originImgId= image.id;
                                 delete image.id;
@@ -570,13 +572,15 @@ router.get('/optimizeImagesAll',verifyShop, (req, res) => {
 
 
 
-                                    if(compressImage.percent>0) { 
+                                    if(compressImage.percent>0) {
                                         image.src = compressImage.dest;
                                         //console.log('delete old Image');
                                         await(shopify.productImage.delete(id,originImgId));
                                        // console.log('Uploading new Image');
                                         await(shopify.productImage.create(id,image));
 
+
+                                    }
 
                                     }
                             });
