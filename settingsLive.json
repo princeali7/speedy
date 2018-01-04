@@ -3,10 +3,10 @@
 		"api_key": "4f7a4e83db530b34b07416cd133dd43c",
 		"client_secret": "74529015f06425b158d0489c908f5e5c",
 		"redirect_uri": "https://smushy.herokuapp.com/api/access_token",
-		"scope": "read_products,write_products"
+		"scope": "read_products,write_products,read_themes, write_themes"
 	},
 	"database":{
-		"socketPath" : "consentprotect.com",
+		"socketPath" : "35.176.140.194",
 		"user": "cookie",
 		"password": "ZTk.8_,RVJ^}",
 		"database": "Smushify"

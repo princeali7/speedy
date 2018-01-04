@@ -5,8 +5,8 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var request = require('request');
 
-var async = require('asyncawait/async');
-var await = require('asyncawait/await');
+//var async = require('asyncawait/async');
+//var await = require('asyncawait/await');
 
 var config ={};
 if (process.env.liveenv)
@@ -34,7 +34,8 @@ var knex = require('knex')({
 });
 const Shopify = require('shopify-api-node');
 var shopify = '';
-var currentShop='';
+var currentShop="";
+
 let userSettings={};
 let resmush= require('../smush-core/resmush.js');
 // // Connect
@@ -235,6 +236,7 @@ router.get('/charge',verifyShopCharge, (req, res) => {
   .catch(err => console.error(err));
 
 });
+
 router.get('/createCharge',verifyShopCharge, (req, res) => {
 
 shopify.recurringApplicationCharge.get(req.query.charge_id).then(function(r){
@@ -294,6 +296,8 @@ shopify.recurringApplicationCharge.get(req.query.charge_id).then(function(r){
 
 
 });
+
+//TODO : Update hooks For Access Token
 router.get('/access_token', verifyRequest, function(req, res) {
   if (req.query.shop) {
     var params = {
@@ -326,6 +330,7 @@ router.get('/access_token', verifyRequest, function(req, res) {
       })
   }
 });
+//authenticate
 router.get('/shopify_auth', function(req, res) {
   if (req.query.shop) {
 
@@ -659,7 +664,6 @@ router.post('/uninstalled-app',verifyShopifyHook, (req, res) => {
 
 
 });
-
 
 
 

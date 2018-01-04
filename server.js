@@ -33,6 +33,7 @@ const Shopify = require('shopify-api-node');
 
 // API file for interacting with MongoDB
 const api = require('./server/routes/api');
+const theme = require('./server/routes/theme');
 const minifyApi = require('./server/routes/minifyApi');
 
 // Parsers
@@ -45,6 +46,7 @@ app.use(express.static(path.join(__dirname, 'distri')));
 
 // API location
 app.use('/api', api);
+app.use('/theme', theme );
 app.use('/minify', minifyApi);
 
 
@@ -147,7 +149,7 @@ function verifyAdmin(req,res,next){
 }
 
 //Set Port
-const port = process.env.PORT || '3000';
+const port = process.env.PORT || '3101';
 app.set('port', port);
 
 const server = http.createServer(app);

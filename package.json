@@ -2,17 +2,14 @@
   "name": "Smushify",
   "version": "0.1.0",
   "license": "MIT",
-  "engines": {
-    "node": "6.11.1"
-  },
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
   "private": true,
   "dependencies": {
-    "asyncawait": "^1.0.6",
     "atob": "^2.0.3",
+    "axios": "^0.17.1",
     "base64-img": "^1.0.3",
     "base64stream": "^0.1.1",
     "body-parser": "^1.18.2",
@@ -26,7 +23,7 @@
     "knex": "^0.13.0",
     "mysql": "^2.14.1",
     "request": "^2.81.0",
-    "shopify-api-node": "^2.8.0",
+    "shopify-api-node": "^2.10.0",
     "unirest": "^0.5.1"
   },
   "devDependencies": {
