@@ -5,8 +5,8 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var request = require('request');
 
-//var async = require('asyncawait/async');
-//var await = require('asyncawait/await');
+var async = require('asyncawait/async');
+var await = require('asyncawait/await');
 
 var config ={};
 if (process.env.liveenv)
