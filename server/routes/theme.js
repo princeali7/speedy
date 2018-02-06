@@ -275,7 +275,45 @@ router.get('/checktheme',verifyShop,async (req,res)=>{
     console.log(respnse);
 });
 
+router.get('/saveScript',verifyShop, async (req, res) => {
 
+    res.setHeader('Content-Type', 'application/json');
+    let mainFile = req.query.main;//;'layout/theme.liquid';
+    let themeId= req.query.themeid;
+    try {
+
+        if (req.query.inlinejs){
+            console.log('insert critical js');
+
+            let cricticaljss= req.query.inlinejs.split(',');
+            let includingjs= "";
+            for(jss of cricticaljss){
+                //let rStyle= "{% raw %}";
+                 let bStyle = await getAsset(`assets/${jss}`,themeId);
+
+                 let rStyle ="{% raw %}"+bStyle.value+" {% endraw %}";
+                  //console.log(bStyle.value);
+                await putAsset(`snippets/${jss}.liquid`,themeId,rStyle);
+
+                includingjs+=` {% include '${jss}' %} `;
+            }
+            res.send( ` <script>${includingjs} </script>`);
+        }
+
+
+        }
+
+
+
+    catch(ex){
+        console.log(ex);
+        //  res.send(ex.response.data);
+    }
+
+    //  res.send(rep.value);
+
+
+});
 function verifyRequest(req, res, next) {
     var map = JSON.parse(JSON.stringify(req.query));
     delete map['signature'];
