@@ -581,9 +581,11 @@ router.get('/optimizeImagesAll',verifyShop, (req, res) => {
                                         image.src = compressImage.dest;
                                         try {
 
-                                            // console.log('Uploading new Image');
+                                             console.log('Uploading new Image');
                                             await(shopify.productImage.create(id, image));
                                             await(shopify.productImage.delete(id, originImgId));
+                                            console.log('Uploaded new Image');
+
                                         }
                                         catch(ex){
                                             console.log('exception happened');
