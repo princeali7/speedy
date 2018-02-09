@@ -580,9 +580,10 @@ router.get('/optimizeImagesAll',verifyShop, (req, res) => {
                                     if(compressImage.percent>0) {
                                         image.src = compressImage.dest;
                                         try {
-                                            await(shopify.productImage.delete(id, originImgId));
+
                                             // console.log('Uploading new Image');
                                             await(shopify.productImage.create(id, image));
+                                            await(shopify.productImage.delete(id, originImgId));
                                         }
                                         catch(ex){
                                             console.log('exception happened');
