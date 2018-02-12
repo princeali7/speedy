@@ -508,11 +508,17 @@ router.get('/optimizeImages',verifyShop, (req, res) => {
 
                                 if(compressImage.percent>=0) {
                                     image.src = compressImage.dest;
-                                    console.log('delete old Image');
-                                    shopify.productImage.delete(id,originImgId).then(()=>{});
-                                    console.log('Uploading new Image');
-                                    shopify.productImage.create(id,image).then((r)=>{});
-
+                                  try {
+                                      console.log('Uploading new Image');
+                                      shopify.productImage.create(id, image).then((r) => {
+                                      });
+                                      console.log('delete old Image');
+                                      shopify.productImage.delete(id, originImgId).then(() => {
+                                      });
+                                  }
+                                  catch(e){
+                                      console.log('exception happened');
+                                  }
 
                                 }
                             });
